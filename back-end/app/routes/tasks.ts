@@ -8,4 +8,8 @@ module.exports = (application: Application) => {
     application.get('/api/task/get', (req: Request, res: Response) => {
         (application as any).app.controllers.tasks.GetTasks(application, req, res);
     });
+
+    application.delete('/api/task/delete', (req: Request, res: Response) => {
+        (application as any).app.controllers.tasks.GetTasks(application, req, res);
+    });
 };
