@@ -1,0 +1,8 @@
+<div *ngIf="content === null" class="row">
+  <fa-layers class="fa-spin" [fixedWidth]="true">
+    <fa-icon [icon]="['far', 'spinner']"></fa-icon>
+  </fa-layers>
+  Carregando...
+</div>
+<div *ngIf="content && content.length === 0" class="row mt-2 p-5">{{ noContentText }}</div>
+<ng-content *ngIf="content && content.length !== 0" class="row mt-2 p-5"></ng-content>

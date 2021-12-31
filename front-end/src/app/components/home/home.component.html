@@ -4,9 +4,7 @@
   </div>
 </div>
 <div *ngIf="!tasks || !tasks.length">
-  <div class="row mt-2 p-5">
-    <div class="col-12 p-3" style="background-color: rgb(231, 231, 231)">Nenhuma tarefa encontrada</div>
-  </div>
+  <app-loader [content]="tasks" [noContentText]="'Nenhuma tarefa encontrada.'"></app-loader>
 </div>
 <div *ngIf="tasks" class="row mt-5 text-center">
   <div *ngFor="let p of tasks" class="col-3">

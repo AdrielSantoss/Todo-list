@@ -13,12 +13,13 @@ import { CreateTaskModalComponent } from './components/create-task-modal/create-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { ToastrModule } from 'ngx-toastr';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 import icons from './icons';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
-    declarations: [AppComponent, HeaderComponent, HomeComponent, CreateTaskModalComponent, DataPipe],
+    declarations: [AppComponent, HeaderComponent, HomeComponent, CreateTaskModalComponent, DataPipe, LoaderComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -29,9 +30,12 @@ import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontaweso
         ReactiveFormsModule,
         HttpClientModule,
         FontAwesomeModule,
-        ToastrModule.forRoot()
+        ToastrModule.forRoot({
+            timeOut: 10000,
+            positionClass: 'toast-bottom-right'
+        })
     ],
-    providers: [AppService, DataPipe],
+    providers: [AppService, DataPipe, ToastrService],
     bootstrap: [AppComponent],
     exports: [DataPipe]
 })
