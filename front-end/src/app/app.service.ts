@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 export interface Task {
-    Id: number;
     Titulo: string;
     Descricao: string;
     CriadoEm?: any;

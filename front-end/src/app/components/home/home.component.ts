@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CreateTaskModalComponent } from '../create-task-modal/create-task-modal.component';
 import { DatePipe } from '@angular/common';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-home',
@@ -12,9 +12,9 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
     providers: [DatePipe]
 })
 export class HomeComponent implements OnInit {
-    tasks?: Task[];
+    tasks?: Task[] = null;
 
-    constructor(private modal: NgbModal, private service: AppService) {
+    constructor(private modal: NgbModal, private service: AppService, private toast: ToastrService) {
         this.service.getTasks().subscribe((tasks: Task[]) => (this.tasks = tasks));
     }
 
@@ -23,11 +23,12 @@ export class HomeComponent implements OnInit {
             backdrop: 'static',
             size: 'lg'
         });
-        modal.result.then((newTask?: Task) => {
-            if (newTask) {
+        modal.result
+            .then((newTask?: Task) => {
                 this.tasks.push(newTask);
-            }
-        });
+                this.toast.info('Tarefa criada com sucesso!');
+            })
+            .catch((err) => this.toast.error(err));
     }
 
     ngOnInit(): void {}

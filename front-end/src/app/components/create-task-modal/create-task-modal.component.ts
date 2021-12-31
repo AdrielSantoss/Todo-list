@@ -9,25 +9,28 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
     styles: []
 })
 export class CreateTaskModalComponent implements OnInit {
-    tarefa: FormGroup;
+    task: FormGroup;
+    submitted = false;
 
     constructor(public modal: NgbActiveModal, private fb: FormBuilder, private service: AppService) {
-        this.tarefa = this.fb.group({
-            Titulo: [null as string, [Validators.required, Validators.minLength(6)]],
-            Descricao: [null as string]
+        this.task = this.fb.group({
+            titulo: [null as string, [Validators.required, Validators.minLength(6)]],
+            descricao: [null as string],
+            criadoEm: [new Date()]
         });
     }
 
     ngOnInit(): void {}
 
     create() {
-        if (this.tarefa.invalid || this.tarefa.errors) {
+        this.submitted = true;
+        if (this.task.invalid || this.task.errors) {
             return;
         }
 
-        this.service.createTask(this.tarefa.value as Task).subscribe(
-            (task) => this.modal.close(task),
-            (err) => console.log(err)
+        this.service.createTask(this.task.value as Task).subscribe(
+            () => this.modal.close(this.task.value as Task),
+            (err) => this.modal.close(err)
         );
     }
 }

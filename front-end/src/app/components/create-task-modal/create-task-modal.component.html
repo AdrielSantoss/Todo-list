@@ -1,11 +1,17 @@
-<div class="modal-header bg-primary text-white"><h2>Nova tarefa</h2></div>
+<div class="modal-header bg-primary text-white"><h2 style="padding: 0; margin: 0">Nova tarefa</h2></div>
 <div class="modal-body">
-  <form [formGroup]="tarefa">
+  <form [formGroup]="task">
     <div class="form-row">
       <div class="col">
         <div class="form-group">
           <label>Titulo</label>
-          <input type="text" class="form-control" placeholder="Digite o titulo" formControlName="Titulo" />
+          <input
+            type="text"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && this.task.controls.titulo.invalid }"
+            placeholder="Digite o titulo"
+            formControlName="titulo"
+          />
         </div>
       </div>
     </div>
@@ -13,7 +19,13 @@
       <div class="col mt-3">
         <div class="form-group">
           <label>Descrição</label>
-          <textarea class="form-control" cols="30" rows="10" formControlName="Descricao"></textarea>
+          <textarea
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && this.task.controls.descricao.invalid }"
+            cols="30"
+            rows="10"
+            formControlName="descricao"
+          ></textarea>
         </div>
       </div>
     </div>
