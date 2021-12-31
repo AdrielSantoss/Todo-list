@@ -4,6 +4,10 @@
   fxLayoutAlign="start stretch"
   style="z-index: 2"
 >
-  <span class="m-2">Todo-List</span>
-  <span class="example-spacer"></span>
+  <span class="m-2">
+    <fa-layers [fixedWidth]="true">
+      <fa-icon [icon]="['far', 'edit']"></fa-icon>
+    </fa-layers>
+    Todo List
+  </span>
 </mat-toolbar>

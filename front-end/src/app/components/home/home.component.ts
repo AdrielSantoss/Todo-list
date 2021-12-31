@@ -1,21 +1,34 @@
+import { AppService, Task } from './../../app.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CreateTaskModalComponent } from '../create-task-modal/create-task-modal.component';
+import { DatePipe } from '@angular/common';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styles: [],
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss'],
+    providers: [DatePipe]
 })
 export class HomeComponent implements OnInit {
-  constructor(private modal: NgbModal) {}
+    tasks?: Task[];
 
-  openModalTask() {
-    const modal = this.modal.open(CreateTaskModalComponent, {
-      backdrop: 'static',
-      size: 'lg',
-    });
-  }
+    constructor(private modal: NgbModal, private service: AppService) {
+        this.service.getTasks().subscribe((tasks: Task[]) => (this.tasks = tasks));
+    }
 
-  ngOnInit(): void {}
+    openModalTask() {
+        const modal = this.modal.open(CreateTaskModalComponent, {
+            backdrop: 'static',
+            size: 'lg'
+        });
+        modal.result.then((newTask?: Task) => {
+            if (newTask) {
+                this.tasks.push(newTask);
+            }
+        });
+    }
+
+    ngOnInit(): void {}
 }

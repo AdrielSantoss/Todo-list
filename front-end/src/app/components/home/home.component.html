@@ -1,10 +1,51 @@
 <div class="row">
   <div class="col-12 mt-5 text-center">
-    <button class="btn btn-primary" (click)="openModalTask()">
-      + Nova tarefa
-    </button>
+    <button class="btn btn-primary" (click)="openModalTask()">+ Nova tarefa</button>
   </div>
 </div>
-<div class="row">
-  <div class="col-12"></div>
+<div *ngIf="!tasks || !tasks.length">
+  <div class="row mt-2 p-5">
+    <div class="col-12 p-3" style="background-color: rgb(231, 231, 231)">Nenhuma tarefa encontrada</div>
+  </div>
+</div>
+<div *ngIf="tasks" class="row mt-5 text-center">
+  <div *ngFor="let p of tasks" class="col-3">
+    <div id="card-task" class="card m-3">
+      <div class="card-header bg-primary text-white">
+        <div class="row">
+          <div class="col-auto">
+            <fa-layers [fixedWidth]="true">
+              <fa-icon [icon]="['far', 'file-alt']"></fa-icon>
+            </fa-layers>
+            {{ p.titulo }}
+          </div>
+          <div class="col"></div>
+          <div class="col-auto">
+            <small style="cursor: pointer">
+              <fa-layers [fixedWidth]="true">
+                <fa-icon [icon]="['far', 'trash-alt']"></fa-icon>
+              </fa-layers>
+            </small>
+            <small style="cursor: pointer">
+              <fa-layers [fixedWidth]="true">
+                <fa-icon [icon]="['far', 'edit']"></fa-icon>
+              </fa-layers>
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="card-body" style="min-height: 200px">
+        {{ p.descricao }}
+      </div>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col-auto">
+            <small>Criado em: {{ p.criadoEm | data }}</small>
+          </div>
+          <div class="col"></div>
+          <div *ngIf="p.prazo" class="col-auto">Prazo: {{ p.prazo }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
