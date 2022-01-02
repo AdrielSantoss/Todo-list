@@ -25,10 +25,15 @@ export class HomeComponent implements OnInit {
         });
         modal.componentInstance.currentTask = task;
         modal.result
-            .then((newTask?: Task) => {
-                if (newTask) {
-                    this.tasks.push(newTask);
-                    this.toast.info('Tarefa criada com sucesso!');
+            .then((newTask?: Dto) => {
+                if (newTask && newTask.task) {
+                    if (newTask.mode === 'create') {
+                        this.tasks.push(newTask.task);
+                    }
+                    if (newTask.mode === 'edit') {
+                        this.tasks[this.tasks.findIndex((item: Task) => newTask.task.id === item.id)] = newTask.task;
+                    }
+                    this.toast.info(`Tarefa ${newTask.mode === 'edit' ? 'editada' : 'criada'} com sucesso!`);
                 }
             })
             .catch((err) => this.toast.error(err));

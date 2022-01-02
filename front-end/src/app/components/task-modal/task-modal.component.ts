@@ -3,6 +3,13 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
+export type Mode = 'create' | 'edit';
+
+export interface Dto {
+    task: Task;
+    mode: Mode;
+}
+
 @Component({
     selector: 'app-task-modal',
     templateUrl: './task-modal.component.html',
@@ -38,13 +45,20 @@ export class TaskModalComponent implements OnInit {
             this.service.createTask(this.task.value as Task).subscribe(
                 (id) => {
                     this.task.controls.id.setValue(id[0]);
-                    this.modal.close(this.task.value as Task);
+                    this.modal.close(<Dto>{
+                        task: this.task.value as Task,
+                        mode: 'create'
+                    });
                 },
                 (err) => this.modal.close(err)
             );
         } else {
             this.service.editTask(this.task.value as Task).subscribe(
-                () => this.modal.close(this.task.value as Task),
+                () =>
+                    this.modal.close(<Dto>{
+                        task: this.task.value as Task,
+                        mode: 'edit'
+                    }),
                 (err) => this.modal.close(err)
             );
         }
