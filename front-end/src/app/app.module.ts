@@ -9,7 +9,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { CreateTaskModalComponent } from './components/create-task-modal/create-task-modal.component';
+import { TaskModalComponent } from './components/task-modal/task-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,7 +19,7 @@ import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontaweso
 import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
-    declarations: [AppComponent, HeaderComponent, HomeComponent, CreateTaskModalComponent, DataPipe, LoaderComponent],
+    declarations: [AppComponent, HeaderComponent, HomeComponent, TaskModalComponent, DataPipe, LoaderComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,

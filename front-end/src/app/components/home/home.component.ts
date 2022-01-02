@@ -1,7 +1,7 @@
 import { AppService, Task } from './../../app.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CreateTaskModalComponent } from '../create-task-modal/create-task-modal.component';
+import { TaskModalComponent } from '../task-modal/task-modal.component';
 import { DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 
@@ -18,15 +18,18 @@ export class HomeComponent implements OnInit {
         this.service.getTasks().subscribe((tasks: Task[]) => (this.tasks = tasks));
     }
 
-    openModalTask() {
-        const modal = this.modal.open(CreateTaskModalComponent, {
+    openModalTask(task?: Task) {
+        const modal = this.modal.open(TaskModalComponent, {
             backdrop: 'static',
             size: 'lg'
         });
+        modal.componentInstance.currentTask = task;
         modal.result
             .then((newTask?: Task) => {
-                this.tasks.push(newTask);
-                this.toast.info('Tarefa criada com sucesso!');
+                if (newTask) {
+                    this.tasks.push(newTask);
+                    this.toast.info('Tarefa criada com sucesso!');
+                }
             })
             .catch((err) => this.toast.error(err));
     }
