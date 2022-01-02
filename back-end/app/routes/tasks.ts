@@ -9,7 +9,7 @@ module.exports = (application: Application) => {
         (application as any).app.controllers.tasks.GetTasks(application, req, res);
     });
 
-    application.put('/api/task/edit/:id', (req: Request, res: Response) => {
+    application.put('/api/task/edit', (req: Request, res: Response) => {
         (application as any).app.controllers.tasks.EditTask(application, req, res);
     });
 
