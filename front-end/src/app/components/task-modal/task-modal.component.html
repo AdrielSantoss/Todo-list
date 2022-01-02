@@ -34,6 +34,40 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-6 mt-3">
+        <div class="form-group">
+          <label>Prazo</label>
+          <input
+            class="form-control form-control-sm bg-white"
+            ngbDatepicker
+            #dataInicialDatepicker="ngbDatepicker"
+            (ngModelChange)="changeDate($event)"
+            (click)="dataInicialDatepicker.toggle()"
+            readonly
+            placeholder="Selecione a data"
+          />
+          -
+        </div>
+      </div>
+      <div class="col-6 mt-3">
+        <div class="form-group">
+          <div>
+            <label>Notificação no windows</label>
+          </div>
+          <div class="card">
+            <div class="m-2">
+              <input type="radio" />
+              Ativado
+            </div>
+            <div class="m-2">
+              <input type="radio" />
+              Desativado
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </form>
 </div>
 <div class="modal-footer">

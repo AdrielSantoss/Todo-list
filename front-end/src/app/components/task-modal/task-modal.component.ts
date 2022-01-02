@@ -25,7 +25,8 @@ export class TaskModalComponent implements OnInit {
             id: [null],
             titulo: [null as string, [Validators.required, Validators.minLength(6)]],
             descricao: [null as string],
-            criadoEm: [new Date()]
+            criadoEm: [new Date()],
+            prazo: [null]
         });
     }
 
@@ -62,5 +63,9 @@ export class TaskModalComponent implements OnInit {
                 (err) => this.modal.close(err)
             );
         }
+    }
+
+    changeDate(date: any) {
+        this.task.controls.prazo.setValue(new Date(date.year, date.month, date.day));
     }
 }
