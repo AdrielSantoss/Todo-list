@@ -31,7 +31,7 @@ Tasks.prototype.Delete = function (id, res) {
     return this._db
         .where('id', '=', id)
         .del()
-        .then((tasks) => res.status(200).send(tasks))
+        .then(() => res.status(200).send())
         .catch((err: string) => res.status(500).send('Erro inesperado: ' + err));
 };
 
