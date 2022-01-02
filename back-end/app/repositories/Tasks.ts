@@ -27,7 +27,7 @@ Tasks.prototype.Select = function (res) {
         .catch((err: string) => res.status(500).send('Erro inesperado: ' + err));
 };
 
-Tasks.prototype.Delete = function (id, res) {
+Tasks.prototype.Delete = function (id: number, res) {
     return this._db
         .where('id', '=', id)
         .del()
