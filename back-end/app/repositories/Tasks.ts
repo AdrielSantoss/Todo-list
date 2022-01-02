@@ -5,7 +5,7 @@ function Tasks(this: any, app) {
 Tasks.prototype.Insert = function (task: any, res) {
     return this._db
         .insert(task)
-        .then((id: number) => res.status(200).send(id))
+        .then((id: number) => res.status(200).send(id as Number))
         .catch((err: string) => res.status(500).send('Erro inesperado:' + err));
 };
 
