@@ -1,4 +1,9 @@
-<div class="modal-header bg-primary text-white"><h2 style="padding: 0; margin: 0">Nova tarefa</h2></div>
+<div class="modal-header bg-primary text-white">
+  <h2 style="padding: 0; margin: 0">
+    <span *ngIf="!currentTask">Nova tarefa</span>
+    <span *ngIf="currentTask">Editar tarefa - {{ currentTask.titulo }}</span>
+  </h2>
+</div>
 <div class="modal-body">
   <form [formGroup]="task">
     <div class="form-row">
@@ -32,6 +37,7 @@
   </form>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-primary" (click)="create()">Criar</button>
+  <button *ngIf="!currentTask" class="btn btn-primary" (click)="create()">Criar</button>
+  <button *ngIf="currentTask" class="btn btn-primary" (click)="create()">Editar</button>
   <button class="btn btn-secondary" (click)="modal.close()">Cancelar</button>
 </div>
