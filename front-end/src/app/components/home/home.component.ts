@@ -1,7 +1,7 @@
 import { AppService, Task } from './../../app.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { TaskModalComponent } from '../task-modal/task-modal.component';
+import { Dto, TaskModalComponent } from '../task-modal/task-modal.component';
 import { DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 
@@ -37,6 +37,19 @@ export class HomeComponent implements OnInit {
                 }
             })
             .catch((err) => this.toast.error(err));
+    }
+
+    deleteTask(id: number) {
+        this.service.deleteTask(id).subscribe(
+            () => {
+                this.tasks.splice(
+                    this.tasks.findIndex((item: Task) => id === item.id),
+                    1
+                );
+                this.toast.info('Tarefa removida com sucesso!');
+            },
+            (err) => this.toast.error(err)
+        );
     }
 
     ngOnInit(): void {}

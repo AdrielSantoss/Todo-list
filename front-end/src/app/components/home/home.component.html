@@ -19,14 +19,14 @@
           </div>
           <div class="col"></div>
           <div class="col-auto">
-            <small style="cursor: pointer">
-              <fa-layers [fixedWidth]="true">
-                <fa-icon [icon]="['far', 'trash-alt']"></fa-icon>
-              </fa-layers>
-            </small>
             <small style="cursor: pointer" (click)="openModalTask(p)">
               <fa-layers [fixedWidth]="true">
                 <fa-icon [icon]="['far', 'edit']"></fa-icon>
+              </fa-layers>
+            </small>
+            <small style="cursor: pointer" (click)="deleteTask(p.id)">
+              <fa-layers [fixedWidth]="true">
+                <fa-icon [icon]="['far', 'trash-alt']"></fa-icon>
               </fa-layers>
             </small>
           </div>
