@@ -1,5 +1,5 @@
-import { faThumbsUp, faEdit, faTrashAlt, faFileAlt, faSpinner } from '@fortawesome/pro-regular-svg-icons';
+import { faThumbsUp, faEdit, faTrashAlt, faFileAlt, faSpinner, faTimes } from '@fortawesome/pro-regular-svg-icons';
 
-const icons = [faThumbsUp, faEdit, faTrashAlt, faFileAlt, faSpinner];
+const icons = [faThumbsUp, faEdit, faTrashAlt, faFileAlt, faSpinner, faTimes];
 
 export default icons;
