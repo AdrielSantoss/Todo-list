@@ -12,10 +12,12 @@
       <div class="card-header bg-primary text-white">
         <div class="row">
           <div class="col-auto">
-            <fa-layers [fixedWidth]="true">
-              <fa-icon [icon]="['far', 'file-alt']"></fa-icon>
-            </fa-layers>
-            {{ p.titulo }}
+            <h3 style="padding: 0; margin: 0">
+              <fa-layers [fixedWidth]="true">
+                <fa-icon [icon]="['far', 'file-alt']"></fa-icon>
+              </fa-layers>
+              {{ p.titulo }}
+            </h3>
           </div>
           <div class="col"></div>
           <div class="col-auto">
@@ -30,6 +32,22 @@
               </fa-layers>
             </small>
           </div>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col m-auto p-2" style="background-color: rgb(230, 230, 230); max-width: 93.5%">
+          <small class="bg-secondary text-white p-1" style="border-radius: 5%">
+            Prazo: 10/10/10
+            <fa-layers [fixedWidth]="true">
+              <fa-icon [icon]="['far', 'times']"></fa-icon>
+            </fa-layers>
+          </small>
+          <small class="bg-secondary text-white p-1 m-2" style="border-radius: 5%">
+            Notificação: 10/10/10
+            <fa-layers [fixedWidth]="true">
+              <fa-icon [icon]="['far', 'times']"></fa-icon>
+            </fa-layers>
+          </small>
         </div>
       </div>
       <div class="card-body" style="min-height: 200px">
