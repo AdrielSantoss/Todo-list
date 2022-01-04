@@ -21,7 +21,8 @@ export class HomeComponent implements OnInit {
     openModalTask(task?: Task) {
         const modal = this.modal.open(TaskModalComponent, {
             backdrop: 'static',
-            size: 'lg'
+            size: 'lg',
+            keyboard: false
         });
         modal.componentInstance.currentTask = task;
         modal.result
