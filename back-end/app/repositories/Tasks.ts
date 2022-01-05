@@ -1,3 +1,11 @@
+export interface Task {
+    id: number;
+    Titulo: string;
+    Descricao: string;
+    CriadoEm?: any;
+    Prazo?: any;
+}
+
 function Tasks(this: any, app) {
     this._db = app.db('tarefas');
 }
@@ -23,7 +31,7 @@ Tasks.prototype.Update = function (task: any, res) {
 Tasks.prototype.Select = function (res) {
     return this._db
         .select()
-        .then((tasks) => res.status(200).send(tasks))
+        .then((tasks?: Task[]) => res.status(200).send(tasks))
         .catch((err: string) => res.status(500).send('Erro inesperado: ' + err));
 };
 
