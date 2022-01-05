@@ -43,23 +43,42 @@
     <div class="form-row">
       <div class="col mt-3">
         <div class="form-group">
-          <label>Prazo</label>
-          <input
+          <div class="card">
+            <div class="card-header">
+              <div class="row">
+                <div class="col-auto"><label>Prazo</label></div>
+                <div class="col"></div>
+                <div class="col-auto">
+                  <button class="btn btn-sm btn-primary" (click)="collapse.toggle()">
+                    <span *ngIf="isCollapsed">abrir</span>
+                    <span *ngIf="!isCollapsed">Encolher</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+              <div class="card-body">
+                <ngb-timepicker formControlName="time" meridian="meridian"></ngb-timepicker>
+                <ngb-datepicker formControlName="date"></ngb-datepicker>
+              </div>
+            </div>
+          </div>
+
+          <!-- <input
             class="form-control form-control-sm bg-white"
+            style="max-width: 250px"
             ngbDatepicker
-            formControlName="prazo"
             #dataInicialDatepicker="ngbDatepicker"
             (ngModelChange)="changeDate($event)"
             (click)="dataInicialDatepicker.toggle()"
             readonly
             placeholder="Selecione a data"
-          />
-          -
+          /> -->
         </div>
       </div>
     </div>
     <div class="form-row">
-      <div class="col">
+      <div class="col mt-3">
         <div class="form-group">
           <div>
             <label>Notificação no windows</label>
