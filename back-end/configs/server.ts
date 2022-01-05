@@ -3,9 +3,11 @@ const app = require('express')(),
     consign = require('consign'),
     cors = require('cors'),
     validator = require('express-validator'),
-    db = require('./database');
+    db = require('./database'),
+    notifier = require('node-notifier');
 
 app.db = db;
+app.notifier = notifier;
 
 app.use(bodyParser.urlencoded({ extended: true }))
     .use(bodyParser.json())
