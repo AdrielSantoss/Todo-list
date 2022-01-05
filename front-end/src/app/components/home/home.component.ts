@@ -2,8 +2,9 @@ import { AppService, Task } from './../../app.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Dto, TaskModalComponent } from '../task-modal/task-modal.component';
-import { DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { DatePipe } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-home',
@@ -41,16 +42,28 @@ export class HomeComponent implements OnInit {
     }
 
     deleteTask(id: number) {
-        this.service.deleteTask(id).subscribe(
-            () => {
-                this.tasks.splice(
-                    this.tasks.findIndex((item: Task) => id === item.id),
-                    1
+        Swal.fire({
+            title: `Aviso`,
+            text: 'Você deseja excluir essa tarefa?',
+            icon: 'question',
+            showCancelButton: true,
+            cancelButtonText: 'Não',
+            confirmButtonColor: '#0275d8',
+            confirmButtonText: 'Sim'
+        }).then((result) => {
+            if (result.value) {
+                this.service.deleteTask(id).subscribe(
+                    () => {
+                        this.tasks.splice(
+                            this.tasks.findIndex((item: Task) => id === item.id),
+                            1
+                        );
+                        this.toast.info('Tarefa removida com sucesso!');
+                    },
+                    (err) => this.toast.error(err)
                 );
-                this.toast.info('Tarefa removida com sucesso!');
-            },
-            (err) => this.toast.error(err)
-        );
+            }
+        });
     }
 
     ngOnInit(): void {}
