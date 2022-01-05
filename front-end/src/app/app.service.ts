@@ -3,10 +3,10 @@ import { HttpClient } from '@angular/common/http';
 
 export interface Task {
     id: number;
-    Titulo: string;
-    Descricao: string;
-    CriadoEm?: any;
-    Prazo?: any;
+    titulo: string;
+    descricao: string;
+    criadoEm?: any;
+    prazo?: any;
 }
 
 @Injectable()
