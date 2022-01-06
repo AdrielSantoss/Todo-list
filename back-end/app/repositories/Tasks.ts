@@ -43,14 +43,14 @@ Tasks.prototype.Delete = function (id: number, res) {
         .catch((err: string) => res.status(500).send('Erro inesperado: ' + err));
 };
 
-Tasks.prototype.Notification = function (res) {
-    let currentTasks;
-    this._db
+Tasks.prototype.Notification = async function (res) {
+    return await this._db
         .where('prazo', '<>', '')
         .select()
-        .then((tasks?: Task[]) => (currentTasks = tasks))
+        .orderBy('prazo', 'asc')
+        .limit(1)
+        .then((task?: Task[]) => task)
         .catch((err: string) => res.status(500).send('Erro inesperado: ' + err));
-    console.log(currentTasks);
 };
 
 module.exports = function () {
