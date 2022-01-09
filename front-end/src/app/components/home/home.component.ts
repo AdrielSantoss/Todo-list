@@ -65,5 +65,11 @@ export class HomeComponent implements OnInit {
         });
     }
 
+    deleteProperty(property: 'prazo' | 'notificacao', id: number) {
+        let task = this.tasks.find((task: Task) => task.id === id);
+        delete task[property];
+        this.service.editTask(task).subscribe(() => this.toast.success(`${property} removido com sucesso`)); //arrumar
+    }
+
     ngOnInit(): void {}
 }

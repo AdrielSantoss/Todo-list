@@ -36,13 +36,22 @@
       </div>
       <div class="row text-center">
         <div class="col m-auto p-2" style="background-color: rgb(230, 230, 230); max-width: 93.5%; overflow-x: auto">
-          <small *ngIf="p.prazo" class="bg-secondary text-white p-1" style="border-radius: 5%">
+          <small
+            *ngIf="p.prazo"
+            class="bg-secondary text-white p-1"
+            style="border-radius: 5%; cursor: pointer"
+            (click)="deleteProperty('prazo', p.id)"
+          >
             Prazo: {{ p.prazo | data }}
             <fa-layers [fixedWidth]="true">
               <fa-icon [icon]="['far', 'times']"></fa-icon>
             </fa-layers>
           </small>
-          <small class="bg-secondary text-white p-1 m-2" style="border-radius: 5%">
+          <small
+            class="bg-secondary text-white p-1 m-2"
+            style="border-radius: 5%; cursor: pointer"
+            (click)="deleteProperty('notificacao', p.id)"
+          >
             Notificação: ativo
             <fa-layers [fixedWidth]="true">
               <fa-icon [icon]="['far', 'times']"></fa-icon>
