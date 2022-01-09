@@ -1,9 +1,16 @@
 const application = require('./configs/server');
 
-application.listen(5000, () => {
+// funcionou - adaptar
+
+application.listen(5000, async () => {
+    application.hostServer.init(application);
     console.log('Api em execução...');
-    const repository = new application.app.repositories.Tasks(application);
-    repository.Notification();
+
+    // setTimeout(() => {
+    //     console.log('oi');
+    // }, 1000);
+
+    //Date.parse(nexNotification[0].prazo)
 
     // application.notifier.notify(
     //     {

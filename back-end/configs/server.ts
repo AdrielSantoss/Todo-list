@@ -4,10 +4,12 @@ const app = require('express')(),
     cors = require('cors'),
     validator = require('express-validator'),
     db = require('./database'),
-    notifier = require('node-notifier');
+    notifier = require('node-notifier'),
+    hostServer = require('./IhostServer');
 
 app.db = db;
 app.notifier = notifier;
+app.hostServer = hostServer;
 
 app.use(bodyParser.urlencoded({ extended: true }))
     .use(bodyParser.json())
