@@ -7,6 +7,7 @@ export interface Task {
     descricao: string;
     criadoEm?: any;
     prazo?: any;
+    notificacao?: boolean;
 }
 
 @Injectable()

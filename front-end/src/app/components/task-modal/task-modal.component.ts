@@ -29,7 +29,8 @@ export class TaskModalComponent implements OnInit {
             criadoEm: [new Date()],
             prazo: [null as Date],
             date: [null],
-            time: [null]
+            time: [null],
+            notificacao: [null]
         });
     }
 
