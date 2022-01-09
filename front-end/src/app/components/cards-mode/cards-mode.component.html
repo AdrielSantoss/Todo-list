@@ -1,0 +1,67 @@
+<div *ngIf="tasks" class="row mt-1 text-center">
+  <div *ngFor="let p of tasks" class="col-3">
+    <div id="card-task" class="card m-3">
+      <div class="card-header bg-primary text-white">
+        <div class="row">
+          <div class="col-auto">
+            <h3 style="padding: 0; margin: 0">
+              <fa-layers [fixedWidth]="true">
+                <fa-icon [icon]="['far', 'file-alt']"></fa-icon>
+              </fa-layers>
+              {{ p.titulo }}
+            </h3>
+          </div>
+          <div class="col"></div>
+          <div class="col-auto">
+            <small style="cursor: pointer" (click)="openModalTask(p)">
+              <fa-layers [fixedWidth]="true">
+                <fa-icon [icon]="['far', 'edit']"></fa-icon>
+              </fa-layers>
+            </small>
+            <small style="cursor: pointer" (click)="deleteTask(p.id)">
+              <fa-layers [fixedWidth]="true">
+                <fa-icon [icon]="['far', 'trash-alt']"></fa-icon>
+              </fa-layers>
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col m-auto p-2" style="background-color: rgb(230, 230, 230); max-width: 93.5%; overflow-x: auto">
+          <small
+            *ngIf="p.prazo"
+            class="bg-secondary text-white p-1"
+            style="border-radius: 5%; cursor: pointer"
+            (click)="deleteProperty('prazo', p.id)"
+          >
+            Prazo: {{ p.prazo | data }}
+            <fa-layers [fixedWidth]="true">
+              <fa-icon [icon]="['far', 'times']"></fa-icon>
+            </fa-layers>
+          </small>
+          <small
+            *ngIf="p.notificacao"
+            class="bg-secondary text-white p-1 m-2"
+            style="border-radius: 5%; cursor: pointer"
+            (click)="deleteProperty('notificacao', p.id)"
+          >
+            Notificação: ativo
+            <fa-layers [fixedWidth]="true">
+              <fa-icon [icon]="['far', 'times']"></fa-icon>
+            </fa-layers>
+          </small>
+        </div>
+      </div>
+      <div class="card-body" style="min-height: 200px">
+        {{ p.descricao }}
+      </div>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col-auto">
+            <small>Criado em: {{ p.criadoEm | data }}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

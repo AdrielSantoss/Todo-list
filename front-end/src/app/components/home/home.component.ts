@@ -6,6 +6,11 @@ import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import Swal from 'sweetalert2';
 
+export enum TasksMode {
+    Card = 'Cards',
+    List = 'Lista'
+}
+
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
@@ -13,6 +18,8 @@ import Swal from 'sweetalert2';
 })
 export class HomeComponent implements OnInit {
     tasks?: Task[] = null;
+    modes = TasksMode;
+    currentMode: TasksMode;
 
     constructor(private modal: NgbModal, private service: AppService, private toast: ToastrService) {
         this.service.getTasks().subscribe((tasks: Task[]) => (this.tasks = tasks));
@@ -68,7 +75,7 @@ export class HomeComponent implements OnInit {
     deleteProperty(property: 'prazo' | 'notificacao', id: number) {
         let task = this.tasks.find((task: Task) => task.id === id);
         delete task[property];
-        this.service.editTask(task).subscribe(() => this.toast.success(`${property} removido com sucesso`)); //arrumar
+        this.service.editTask(task as Task).subscribe(() => this.toast.info(`${property} removido com sucesso`));
     }
 
     ngOnInit(): void {}

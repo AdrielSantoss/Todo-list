@@ -19,9 +19,11 @@ import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontaweso
 import { LoaderComponent } from './components/loader/loader.component';
 import { DateFormat } from './utils/date.format';
 import { DataHoraPipe } from './utils/date.time.pipe';
+import { CardsModeComponent } from './components/cards-mode/cards-mode.component';
+import { ListModeComponent } from './components/list-mode/list-mode.component';
 
 @NgModule({
-    declarations: [AppComponent, HeaderComponent, HomeComponent, TaskModalComponent, DataPipe, LoaderComponent],
+    declarations: [AppComponent, HeaderComponent, HomeComponent, TaskModalComponent, DataPipe, LoaderComponent, CardsModeComponent, ListModeComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
