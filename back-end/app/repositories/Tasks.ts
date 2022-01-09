@@ -4,6 +4,7 @@ export interface Task {
     descricao: string;
     criadoEm?: any;
     prazo?: any;
+    notificacao?: boolean;
 }
 
 function Tasks(this: any, app) {
@@ -17,12 +18,14 @@ Tasks.prototype.Insert = function (task: any, res) {
         .catch((err: string) => res.status(500).send('Erro inesperado:' + err));
 };
 
-Tasks.prototype.Update = function (task: any, res) {
+Tasks.prototype.Update = function (task: Task, res) {
     return this._db
         .where('id', '=', task.id)
         .update({
             titulo: task.titulo,
-            descricao: task.descricao
+            descricao: task.descricao,
+            prazo: task.prazo ?? null,
+            notificacao: task.notificacao ?? null
         })
         .then(() => res.status(200).send('Tarefa editada com sucesso!'))
         .catch((err) => res.status(500).send('Erro inesperado:' + err));
